@@ -33,9 +33,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build
-        path: build
-      
-    
+        path: build   
     
   deploy:
      name: Deploy
@@ -44,7 +42,7 @@ jobs:
      steps:
        -uses: actions/checkout@v2
        -name: download build
-        uses: actions/downlaod-artifact@v2        
+        uses: actions/download-artifact@v2
         with:
           name: build
           path: build
