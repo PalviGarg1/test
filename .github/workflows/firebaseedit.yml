@@ -29,7 +29,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-      -name: Archive Build
+    - name: Archive Build
       uses: actions/upload-artifact@v2
       with:
         name: build
@@ -40,15 +40,15 @@ jobs:
      needs: build
      runs-on: ubuntu-latest
      steps:
-       -uses: actions/checkout@v2
-       -name: download build
-        uses: actions/download-artifact@v2
-        with:
+       - uses: actions/checkout@v2
+       - name: download build
+         uses: actions/download-artifact@v2
+         with:
           name: build
           path: build
-       -name: deploy to firebase
-        uses: w9jds/firebase-action@master
-        with:
-        args: deploy --only hosting
-        env:
-        FIREBASE_TOKEN: ${{ secrets.Firebase_Token }} 
+       - name: Deploy to Firebase
+       - uses: w9jds/firebase-action@master
+         with:
+            args: deploy --only hosting
+         env:
+            FIREBASE_TOKEN: ${{ secrets.Firebase_Token }} 
